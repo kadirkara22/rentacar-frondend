@@ -1,0 +1,21 @@
+<h3 style="font-weight: 700; color:darkcyan">Rentals</h3>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>CompanyName</th>
+        <th>brandName</th>
+        <th>rentDate</th>
+        <th>returnDate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rental of rentals" >
+        <td>{{rental.carId}}</td>
+        <td>{{rental.companyName}}</td>
+        <td>{{rental.brandName}}</td>
+        <td>{{rental.rentDate | date:'dd-MM-YYYY'}}</td>
+        <td>{{(rental.returnDate == null)? "Not yet delivered!": rental.returnDate | date:'dd-MM-YYYY'}}</td>
+      </tr>
+    </tbody>
+  </table>

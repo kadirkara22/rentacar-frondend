@@ -1,0 +1,15 @@
+<h3 style="font-weight: 700; color:darkcyan">Customers</h3>
+<table class="table table-bordered">
+<thead>
+  <tr>
+    <th>ID</th>
+    <th>COMPANY NAME</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let customer of customers">
+    <td>{{customer.userId}}</td>
+    <td>{{customer.companyName}}</td>
+  </tr>
+</tbody>
+</table>
