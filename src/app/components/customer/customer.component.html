@@ -4,12 +4,16 @@
   <tr>
     <th>ID</th>
     <th>COMPANY NAME</th>
+    <th>MUSTERİ ADI</th>
+    <th>EMAİL</th>
   </tr>
 </thead>
 <tbody>
   <tr *ngFor="let customer of customers">
-    <td>{{customer.userId}}</td>
+    <td>{{customer.id}}</td>
     <td>{{customer.companyName}}</td>
+    <td>{{customer.customerName}}</td>
+    <td>{{customer.email}}</td>
   </tr>
 </tbody>
 </table>

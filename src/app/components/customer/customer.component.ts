@@ -15,7 +15,7 @@ customers:Customer[]=[];
     this.getCustomers();
   }
   getCustomers(){
-    this.customerService.getColors().subscribe(response=>{
+    this.customerService.getCustomers().subscribe(response=>{
       this.customers=response.data
   })
   }

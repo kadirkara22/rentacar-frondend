@@ -3,15 +3,17 @@
     <thead>
       <tr>
         <th>ID</th>
+        <th>Müşteri Adı</th>
         <th>CompanyName</th>
-        <th>brandName</th>
-        <th>rentDate</th>
-        <th>returnDate</th>
+        <th>BrandName</th>
+        <th>RentDate</th>
+        <th>ReturnDate</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let rental of rentals" >
         <td>{{rental.carId}}</td>
+        <td>{{rental.customerName}}</td>
         <td>{{rental.companyName}}</td>
         <td>{{rental.brandName}}</td>
         <td>{{rental.rentDate | date:'dd-MM-YYYY'}}</td>

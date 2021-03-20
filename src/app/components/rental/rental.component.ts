@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Rental } from 'src/app/Models/rental';
+import { RentalsDto } from 'src/app/Models/rentalsDto';
 import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
@@ -8,15 +9,13 @@ import { RentalService } from 'src/app/services/rental.service';
   styleUrls: ['./rental.component.css']
 })
 export class RentalComponent implements OnInit {
-rentals:Rental[]=[];
-  constructor(private rentalService:RentalService) { }
+  rentals: Rental[] = [];
+  rentalDetails: RentalsDto[] = [];
+  dataLoaded: boolean = false;
+  constructor(private rentalService: RentalService) {}
 
   ngOnInit(): void {
-    this.getRentals();
+
   }
-  getRentals() {
-    this.rentalService.getRentals().subscribe(response=>{
-      this.rentals=response.data
-    });
-  }
+
 }

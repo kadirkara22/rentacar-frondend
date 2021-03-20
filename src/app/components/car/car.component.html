@@ -1,28 +1,29 @@
-<h3 style="font-weight: 700; color:darkcyan">Cars</h3>
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
+<div *ngIf="dataLoaded==false" class="spinner-border" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
+<div>
 
-<table *ngIf="dataLoaded!=false" class="table table-bordered">
-  <thead>
-  <tr>
-  <th>ID</th>
-  <th>BRAND</th>
-  <th>COLOR</th>
-  <th>MODEL YEAR</th>
-  <th>DAİLY PRİCE</th>
-  <th>DESCRİPTİON</th>
-</tr>
-</thead>
-<tbody>
-  <tr *ngFor="let car of cars">
-    <th scope="row">{{ car.carId }}</th>
-    <td>{{ car.brandName }}</td>
-    <td>{{ car.colorName }}</td>
-    <td>{{ car.modelYear }}</td>
-    <td>{{ car.dailyPrice }}</td>
-    <td>{{ car.description }}</td>
-  </tr>
-</tbody>
-</table>
-
+  <div class="row" *ngIf="dataLoaded==true">
+    <div *ngFor="let car of cars" class="card" style="width: 17rem;">
+      <img src="{{imageBasePath}}/{{car.imagePath}}"
+       class="card-img-top" alt="{{car.description}} Image" width="auto" height="auto">
+      <div  class="card-body">
+        <h5 class="card-title">{{car.brandName}} {{car.description}} {{car.modelYear}}</h5>
+      </div >
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Marka: {{car.brandName}}</li>
+        <li class="list-group-item">Renk: {{car.colorName}}</li>
+        <li class="list-group-item">Model Yılı: {{car.modelYear}}</li>
+        <li class="list-group-item">Fiyat: {{car.dailyPrice}} </li>
+      </ul>
+      <div class="card-body">
+        <section style="float:left">
+          <button routerLink="/car/details/{{car.carId}}" type="button" class="btn btn-primary">Detaylar</button>
+        </section>
+        <section style="float: right">
+          <button type="button" class="btn btn-primary">Kirala</button>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
