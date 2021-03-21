@@ -30,7 +30,7 @@ export class CarDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carId']) {
         this.getCarDetail(params['carId']);
-        // this.getCarImages(params['carId']);
+        this.getCarImages(params['carId']);
       }
     });
   }

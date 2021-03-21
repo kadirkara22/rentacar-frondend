@@ -1,5 +1,4 @@
-
-<div class="card-header text-center mt-3">
+<div class="card-header text-center">
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner  d-flex "
        style="height: 50vh; min-height: 20rem; max-height: 30rem">
@@ -50,13 +49,11 @@
       </tr>
   </thead>
   <tr *ngIf="carDetail" >
-      <td>{{carDetail.carId}}</td>
+      <td>{{carDetail.carId}} </td>
       <td>{{carDetail.brandName}}</td>
       <td>{{carDetail.colorName}}</td>
       <td>{{carDetail.modelYear}}</td>
-      <td>{{carDetail.dailyPrice}}</td>
+      <td>{{carDetail.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2"}}</td>
       <td>{{carDetail.description}}</td>
-
   </tr>
   </table>
-

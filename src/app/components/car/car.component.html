@@ -1,29 +1,42 @@
 <div *ngIf="dataLoaded==false" class="spinner-border" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<div>
 
+  <div class="row" *ngIf="dataLoaded==true">
+    <div class="col-md-4">
+  <div class="mb-3">
+    <label for="filterText" class="form-label"></label>
+    <input type="text" [(ngModel)]="filterText" class="form-control"
+     id="filterText" placeholder="Arama ifade giriniz">
+  </div >
+  <div *ngIf="filterText" class="alert alert-info">
+    {{filterText}} aradınız</div>
+  </div>
+  <div class="col-md-8">
+    <app-car-filter></app-car-filter>
+  </div>
+</div>
   <div class="row mt-3" *ngIf="dataLoaded==true">
-    <div *ngFor="let car of cars" class="card m-1" style="width: 17rem;">
+    <div *ngFor="let car of cars | carFilter:filterText" (click)="setCurrentCar(car)" class="card m-1" style="width: 17rem;">
       <img src="{{imageBasePath}}{{car.imagePath}}"
        class="card-img-top mt-1" alt="{{car.description}} Image" width="auto" height="auto">
       <div  class="card-body">
         <h5 class="card-title">{{car.brandName}} {{car.description}} {{car.modelYear}}</h5>
       </div >
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Marka: {{car.brandName}}</li>
         <li class="list-group-item">Renk: {{car.colorName}}</li>
+        <li class="list-group-item">Marka: {{car.brandName}} </li>
         <li class="list-group-item">Model Yılı: {{car.modelYear}}</li>
-        <li class="list-group-item">Fiyat: {{car.dailyPrice}} </li>
+        <li class="list-group-item">Fiyat: {{car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2"}} </li>
       </ul>
       <div class="card-body">
         <section style="float:left">
           <button routerLink="/cars/details/{{car.carId}}" type="button" class="btn btn-primary">Detaylar</button>
         </section>
         <section style="float: right">
-          <button type="button" class="btn btn-primary">Kirala</button>
+          <button  type="button" class="btn btn-primary">Kirala</button>
         </section>
       </div>
     </div>
   </div>
-</div>
+

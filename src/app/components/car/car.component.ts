@@ -6,6 +6,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CarImageService } from 'src/app/services/carImageService';
 import { CarImage } from 'src/app/Models/carImage';
 import { environment } from 'src/environments/environment';
+import { Color } from 'src/app/Models/color';
+import { ColorService } from 'src/app/services/color.service';
+import { Brand } from 'src/app/Models/brand';
+import { CarDetails } from 'src/app/Models/carDetails';
+import { BrandService } from 'src/app/services/brand.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-car',
@@ -14,18 +20,30 @@ import { environment } from 'src/environments/environment';
 })
 export class CarComponent implements OnInit {
   cars: Car[];
+  colors:Color[];
+  brands:Brand[];
+  carDetails: CarDetails[] = [];
+  currentCar : Car;
   dataLoaded = false;
   imageBasePath = environment.baseUrl;
+  filterText="";
 
-  constructor(private carService: CarService,private activatedRoute:ActivatedRoute) {}
+  constructor(private carService: CarService,
+    private activatedRoute:ActivatedRoute,
+    private brandService:BrandService,
+    private colorService:ColorService,private toastrService: ToastrService) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
-      if(params["brandId"]){
+      if(params["brandId"] && params["colorId"]){
+        this.getCarFiltered(params["brandId"],params["colorId"]);
+      }
+     else if(params["brandId"]){
         this.getCarsByBrand(params["brandId"])
       }else if(params["colorId"]){
         this.getCarsByColor(params["colorId"])
-      }else{
+      }
+      else{
         this.getCars()
       }
     })
@@ -53,4 +71,17 @@ export class CarComponent implements OnInit {
     }
 
 
+    getCarFiltered(brandId: number, colorId: number) {
+      this.carService.getCarFiltered(brandId, colorId).subscribe(response => {
+        this.cars = response.data;
+        this.dataLoaded = true;
+        if (this.cars.length == 0) {
+          this.toastrService.warning("Bu değerlere sahip bir araç bulunmuyor.", "Hata");
+        }
+      })
+    }
+
+    setCurrentCar(car:Car){
+      this.currentCar=car;
+    }
 }
