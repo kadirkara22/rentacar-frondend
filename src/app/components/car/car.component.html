@@ -3,10 +3,10 @@
 </div>
 <div>
 
-  <div class="row" *ngIf="dataLoaded==true">
-    <div *ngFor="let car of cars" class="card" style="width: 17rem;">
-      <img src="{{imageBasePath}}/{{car.imagePath}}"
-       class="card-img-top" alt="{{car.description}} Image" width="auto" height="auto">
+  <div class="row mt-3" *ngIf="dataLoaded==true">
+    <div *ngFor="let car of cars" class="card m-1" style="width: 17rem;">
+      <img src="{{imageBasePath}}{{car.imagePath}}"
+       class="card-img-top mt-1" alt="{{car.description}} Image" width="auto" height="auto">
       <div  class="card-body">
         <h5 class="card-title">{{car.brandName}} {{car.description}} {{car.modelYear}}</h5>
       </div >
@@ -18,7 +18,7 @@
       </ul>
       <div class="card-body">
         <section style="float:left">
-          <button routerLink="/car/details/{{car.carId}}" type="button" class="btn btn-primary">Detaylar</button>
+          <button routerLink="/cars/details/{{car.carId}}" type="button" class="btn btn-primary">Detaylar</button>
         </section>
         <section style="float: right">
           <button type="button" class="btn btn-primary">Kirala</button>

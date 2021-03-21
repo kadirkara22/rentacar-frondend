@@ -14,8 +14,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./car-details.component.css']
 })
 export class CarDetailsComponent implements OnInit {
-  carDetail: Car;
-  carImage: CarImage[] = [];
+  carDetail: CarDetails;
+  carImage: CarImage[];
   dataLoaded = false;
   imageBasePath = environment.baseUrl;
 
@@ -30,7 +30,7 @@ export class CarDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carId']) {
         this.getCarDetail(params['carId']);
-        this.getCarImages(params['carId']);
+        // this.getCarImages(params['carId']);
       }
     });
   }
