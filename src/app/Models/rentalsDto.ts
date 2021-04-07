@@ -1,16 +1,15 @@
 
 export interface RentalsDto {
-  id: number;
-  carId: number;
-  brandId: number;
+  rentald: number;
+  carId:number;
   brandName: string;
-  customerId: number;
-  userId: number;
-  customerName: string;
-  customerSurname: string;
+  colorName:string;
+  firstName: string;
+  lastName: string;
   customerMail: string;
-  company: string;
+  companyName: string;
   dailyPrice: number;
+  modelYear:number;
   rentDate: Date;
   returnDate: Date;
 }

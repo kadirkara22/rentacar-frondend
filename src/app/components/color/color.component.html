@@ -1,13 +1,19 @@
-<div class="mb-3">
-  <label for="filterText" class="form-label"></label>
-  <input type="text" [(ngModel)]="filterTextColor" class="form-control" id="filterText" placeholder="Renk giriniz">
-</div >
-<div *ngIf="filterTextColor" class="alert alert-info">
-  {{filterTextColor}} aradınız</div>
-<div>
-  <ul class="list-group">
-    <button [class]="getAllColorClass()" routerLink="/cars">Tüm Renkler</button>
-    <button (click)="setCurrentColor(color)" routerLink="/cars/color/{{color.colorId}}"
-      *ngFor="let color of colors | colorFilter:filterTextColor" [class]="getCurrentColorClass(color)" style="text-align: left;">{{color.colorName}}</button>
-</ul>
+
+<button [class]="getAllColorClass()" style="text-align:center; width: 250px;" routerLink="/cars">Tüm Renkler</button>
+<div class="mb-3 mt-1" style="padding-top: 15;">
+
+  <input type="text" [(ngModel)]="filterText2" class="form-control" id="filterText2" placeholder="Renk giriniz">
 </div>
+
+<ul class="list-group">
+  <button (click)="setCurrentColor(color)"
+  routerLink = "/cars/color/{{color.colorId}}"
+  *ngFor="let color of colors |colorFilter :filterText2"
+  [class]="getCurrentColorClass(color)" style="text-align:left;">
+  {{color.colorName}}</button>
+
+
+  <button type="button" class="btn btn-success" routerLink = "/cars/coloradd"  ><strong>Renk Ekle</strong> </button>
+
+
+</ul>

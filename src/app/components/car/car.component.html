@@ -1,42 +1,84 @@
-<div *ngIf="dataLoaded==false" class="spinner-border" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-3">
+      <app-brand></app-brand>
+      <br>
+      <app-color></app-color>
+    </div>
 
-  <div class="row" *ngIf="dataLoaded==true">
-    <div class="col-md-4">
-  <div class="mb-3">
-    <label for="filterText" class="form-label"></label>
-    <input type="text" [(ngModel)]="filterText" class="form-control"
-     id="filterText" placeholder="Arama ifade giriniz">
-  </div >
-  <div *ngIf="filterText" class="alert alert-info">
-    {{filterText}} aradınız</div>
-  </div>
-  <div class="col-md-8">
-    <app-car-filter></app-car-filter>
-  </div>
-</div>
-  <div class="row mt-3" *ngIf="dataLoaded==true">
-    <div *ngFor="let car of cars | carFilter:filterText" (click)="setCurrentCar(car)" class="card m-1" style="width: 17rem;">
-      <img src="{{imageBasePath}}{{car.imagePath}}"
-       class="card-img-top mt-1" alt="{{car.description}} Image" width="auto" height="auto">
-      <div  class="card-body">
-        <h5 class="card-title">{{car.brandName}} {{car.description}} {{car.modelYear}}</h5>
-      </div >
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Renk: {{car.colorName}}</li>
-        <li class="list-group-item">Marka: {{car.brandName}} </li>
-        <li class="list-group-item">Model Yılı: {{car.modelYear}}</li>
-        <li class="list-group-item">Fiyat: {{car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2"}} </li>
-      </ul>
-      <div class="card-body">
-        <section style="float:left">
-          <button routerLink="/cars/details/{{car.carId}}" type="button" class="btn btn-primary">Detaylar</button>
-        </section>
-        <section style="float: right">
-          <button  type="button" class="btn btn-primary">Kirala</button>
-        </section>
+    <div class="col-md-9">
+      <div
+        *ngIf="dataLoaded == false"
+        class="spinner-border text-warning"
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="container">
+        <div class="row">
+      <div class="col-md-3 mt-3">
+        <div class="form-floating">
+          <input type="text"[(ngModel)]="filterText" class="form-control"
+           id="filterText" placeholder="aramak istediğiniz ifadeyi giriniz">
+           <label for="floatingInputGrid">İfade Giriniz</label>
+
+           <div style="position: relative; margin-right: 200">
+            <button
+              routerLink="/cars/cardetails"
+              type="button"
+              class="btn btn-outline-primary m-1"
+              style="text-align: center; width: 165px;"
+            >
+              Görünüm
+            </button>
+            <button type="button" class="btn btn-outline-success m-1"
+             style="text-align: center; width: 165px;"
+              routerLink="/cars/caradd">Araç Ekle</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 mt-3">
+        <app-car-filter></app-car-filter>
       </div>
     </div>
   </div>
+      <table class="table table-bordered table-striped table-active">
+        <thead class="thead-light">
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Marka</th>
+            <th>Renk</th>
+            <th>Model</th>
+            <th>Günlük Kirası</th>
+            <th>Açıklama</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of cars | carFilter :filterText" >
+            <td>{{ car.carId }}</td>
+             <td><img src="{{imageUrl+car.imagePath}}"alt="" width="250px" height="150px"></td>
 
+            <!-- <td ><div *ngFor="let image of images">
+              <img  *ngIf="car.carId==image.carId"
+              [src]="imageUrl+image.imagePath"
+              class=""
+              style="height: 150px; width: 250px; object-fit: contain"
+              [alt]="imageUrl+image.imagePath"/></div></td> -->
+            <td>{{ car.brandName }}</td>
+            <td>{{ car.colorName }}</td>
+            <td>{{ car.modelYear }}</td>
+            <td>{{ car.dailyPrice }}</td>
+            <td>{{ car.description }}</td>
+            <td><a href="#" routerLink = "/cars/update/{{car.carId}}"class="badge bg-success"style="text-decoration: none; width: 65px;">Güncelle</a>
+                <a href="#" routerLink = "/cars/cardetails2/{{car.carId}}"
+                 class="card-link badge bg-success" style="text-decoration: none; width: 65px;">İncele</a>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>

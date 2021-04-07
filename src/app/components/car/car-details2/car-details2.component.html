@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-3">
+      <app-brand></app-brand>
+      <br>
+      <app-color></app-color>
+    </div>
+
+    <div class="col-md-9 mt-3">
+<div class="row g-0 bg-light position-relative" *ngFor="let car of cars">
+  <div class="col-md-6 mb-md-0 p-md-4">
+    <img
+        [src]="imageUrl+car.imagePath"
+        class=""
+        style="height: 100%; width: 100%; object-fit: contain"
+        [alt]="imageUrl+car.imagePath"
+
+      />
+
+  </div>
+  <div class="col-md-6 p-4 ps-md-0">
+    <h5 class="card-title" style="text-align:center;">{{car.description}}</h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>Id</strong> : {{car.carId}}</li>
+     <li class="list-group-item"><strong>Marka</strong> : {{car.brandName}}</li>
+     <li class="list-group-item"><strong>Renk</strong> : {{car.colorName}}</li>
+     <li class="list-group-item"><strong>Model</strong> : {{car.modelYear}}</li>
+     <li class="list-group-item"><strong>Günlük Kira </strong>: {{car.dailyPrice}}</li>
+    </ul>
+
+    <div class="card-body" >
+
+      <div class="form-group row">
+        <label for="example-datetime-local-input" class="col-3 col-form-label">
+          <strong>Kiralama Tarihi</strong></label
+        >
+        <div class="col-8">
+          <input [(ngModel)] ="rentStartDate"
+            name="rentStartDate"
+            class="form-control"
+            type="datetime-local"
+            id="rent-start-date-input"
+            required
+          />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-datetime-local-input" class="col-3 col-form-label">
+          <strong>Dönüş Tarihi</strong></label
+        >
+        <div class="col-8">
+          <input [(ngModel)] ="rentEndDate"
+            name="rentEndDate"
+            class="form-control"
+            type="datetime-local"
+            id="rent-end-date-input"
+            required
+          />
+        </div>
+        <div class="card-body">
+          <a
+            routerLink="/cars/rental"
+            class="card-link btn btn-primary"
+            (click)="rentCar(car.carId)" target="_blank"
+            >Kirala</a
+          >
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+</div>

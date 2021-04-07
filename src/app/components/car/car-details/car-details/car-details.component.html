@@ -1,59 +1,68 @@
-<div class="card-header text-center">
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner  d-flex "
-       style="height: 50vh; min-height: 20rem; max-height: 30rem">
-
-        <div *ngFor="let image of carImage; index as i; first as firstImage"
-
-        class="carousel-item align-self-center"
-          [ngClass]="{ active: firstImage }"
-        style="height: 100%; width: 100%">
-           <img
-        src="{{imageBasePath}}{{image.imagePath}}"
-        class=""
-        style="height: 100%; width: 100%; object-fit: contain"
-        alt="imageUrl + image.imagePath"
-      />
-        </div>
-
-        <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleControls"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <app-brand></app-brand>
+      <app-color></app-color>
     </div>
+    <div class="col-md-9">
 
+    <div class="container">
+      <div class="row">
+    <div class="col-md-3 mt-3">
+      <div class="form-floating">
+        <input type="text"[(ngModel)]="filterText" class="form-control"
+         id="filterText" placeholder="aramak istediğiniz ifadeyi giriniz">
+         <label for="floatingInputGrid">İfade Giriniz</label>
+         <div style="position: relative; margin-right: 200">
+          <button
+            routerLink="/cars"
+            type="button"
+            class="btn btn-outline-primary m-1"
+            style="text-align: center; width: 165px;"
+          >
+            Görünüm
+          </button>
+          <button type="button" class="btn btn-outline-success m-1"
+          style="text-align: center; width: 165px;"
+          routerLink="/cars/addcar">Araç Ekle</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 mt-3">
+      <app-car-filter></app-car-filter>
+    </div>
   </div>
-  <div style="text-align:center"  aria-current="true" *ngIf="carDetail"><h4>
-      {{carDetail.brandName}} {{carDetail.description}}
-  </h4></div>
-<table class="table">
+</div>
+<div class="row">
 
-  <thead>
-      <tr>
-          <th>Id</th>
-          <th>Marka</th>
-          <th>Renk</th>
-          <th>Model Yılı</th>
-          <th>Fiyat</th>
-          <th>Açıklama</th>
+  <div *ngFor="let car of cars" class="card" style="width: 16rem ;">
+  <div *ngFor="let image of images">
+    <img  *ngIf="car.carId==image.carId"
+    [src]="imageUrl+image.imagePath"
+    class=""
+    style="height: 100%; width: 100%; object-fit: contain"
+    [alt]="imageUrl+image.imagePath"/>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{car.description}}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"> <strong> Id </strong>    : {{car.carId}}</li>
+    <li class="list-group-item"><strong> Marka</strong>  : {{car.brandName}}</li>
+    <li class="list-group-item"><strong>Renk  </strong> : {{car.colorName}}</li>
+    <li class="list-group-item"><strong>Model </strong> : {{car.modelYear}}</li>
+    <li class="list-group-item"><strong>Günlük Kira </strong> : {{car.dailyPrice}}</li>
+  </ul>
+  <div class="card-body" >
 
-      </tr>
-  </thead>
-  <tr *ngIf="carDetail" >
-      <td>{{carDetail.carId}} </td>
-      <td>{{carDetail.brandName}}</td>
-      <td>{{carDetail.colorName}}</td>
-      <td>{{carDetail.modelYear}}</td>
-      <td>{{carDetail.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2"}}</td>
-      <td>{{carDetail.description}}</td>
-  </tr>
-  </table>
+    <a href="#" routerLink = "/cars/cardetails2/{{car.carId}}"
+     class="card-link btn btn-primary">İncele</a>
+  </div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+

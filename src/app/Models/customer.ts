@@ -4,4 +4,5 @@ export interface Customer{
   companyName:string;
   customerName:string;
   email:string;
+  status:boolean;
 }
