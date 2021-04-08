@@ -58,8 +58,7 @@
         <tbody>
           <tr *ngFor="let car of cars | carFilter :filterText" >
             <td>{{ car.carId }}</td>
-             <td><img src="{{imageUrl+car.imagePath}}"alt="" width="250px" height="150px"></td>
-
+             <td><img class="aw-zoom" src="{{imageUrl+car.imagePath}}"alt="" width="250px" height="150px"></td>
             <!-- <td ><div *ngFor="let image of images">
               <img  *ngIf="car.carId==image.carId"
               [src]="imageUrl+image.imagePath"
