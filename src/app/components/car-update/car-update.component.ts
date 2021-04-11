@@ -25,17 +25,12 @@ export class CarUpdateComponent implements OnInit {
 
       }
     this.createCarAddForm();
-    this.getCars();
+
 
   })
   }
-  getCars(){
 
-    this.carService.getCars().subscribe(response =>{
-      this.cars = response.data
-    })
 
-  }
 
   createCarAddForm(){
     this.carUpdateForm = this.formBuilder.group({

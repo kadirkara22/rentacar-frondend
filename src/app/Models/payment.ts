@@ -4,5 +4,6 @@ export interface Payment{
   expiryDate:Date,
   securityCode:number,
   name:string,
-  lastName:string
+  lastName:string,
+  userId:number
 }

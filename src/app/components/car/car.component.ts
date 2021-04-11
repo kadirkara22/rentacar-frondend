@@ -20,6 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CarComponent implements OnInit {
   cars:CarDetails[] = [];
+  cars2:Car[]=[];
   colors : Color[] =[]
   brands :Brand[] = []
   images:CarImage[]=[]
@@ -104,5 +105,10 @@ export class CarComponent implements OnInit {
       this.images = response.data
     })
   }
-
+  delete(id:number){
+    this.carService.delete(id).subscribe(response=>{
+      console.log(response)
+      this.toastrService.info('Araç Silindi.', 'İşlem Sonucu');
+    })
+  }
 }

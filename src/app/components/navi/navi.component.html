@@ -31,6 +31,12 @@
           >
 
         </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-danger" style="color: yellow;" href="#"
+            ><strong>Kampanyalar</strong></a
+          >
+
+        </li>
       </ul>
 
       <form class="d-flex">
@@ -44,6 +50,18 @@
           <button type="button"routerLink="/login" class="btn btn-success">Login</button></div>
 
       </form>
+      <div class="d-flex" *ngIf="isAuthenticated()">
+
+        <div class="dropdown me-1" >
+          <button type="button"*ngFor="let user of users" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
+            {{user.firstName}} {{user.lastName}}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+             <li><a class="dropdown-item"(click)=logout() href="#">Çıkış Yap</a></li>
+            <li><a class="dropdown-item" routerLink="/updateuser"href="#">Bilgileri Güncelle</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

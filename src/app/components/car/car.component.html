@@ -70,9 +70,14 @@
             <td>{{ car.modelYear }}</td>
             <td>{{ car.dailyPrice }}</td>
             <td>{{ car.description }}</td>
-            <td><a href="#" routerLink = "/cars/update/{{car.carId}}"class="badge bg-success"style="text-decoration: none; width: 65px;">Güncelle</a>
-                <a href="#" routerLink = "/cars/cardetails2/{{car.carId}}"
-                 class="card-link badge bg-success" style="text-decoration: none; width: 65px;">İncele</a>
+            <td>
+              <a href="#" routerLink = "/cars/update/{{car.carId}}"
+              class="badge bg-success"style="text-decoration: none; width: 65px;">Güncelle</a>
+              <a href="#" routerLink = "/cars/cardetails2/{{car.carId}}"
+              class="card-link badge bg-success" style="text-decoration: none; width: 65px;">İncele</a>
+              <br>
+              <a href="#" (click)=delete(car.carId)
+              class="card-link badge bg-warning" style="text-decoration: none; width: 65px;">Sil</a>
             </td>
           </tr>
         </tbody>

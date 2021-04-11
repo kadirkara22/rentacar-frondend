@@ -10,5 +10,6 @@ export interface Car{
   description:string;
   carImage:string;
   imagePath:string;
+  findeks:number;
 
 }

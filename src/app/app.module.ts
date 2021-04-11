@@ -31,6 +31,9 @@ import { CarUpdateComponent } from './components/car-update/car-update.component
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { UserUpdateComponent } from './components/user-update/user-update.component';
+import { RegisterComponent } from './components/register/register.component';
+
 
 
 @NgModule({
@@ -56,13 +59,16 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     CarAddComponent,
     ColorUpdateComponent,
     CarUpdateComponent,
-    LoginComponent
+    LoginComponent,
+    UserUpdateComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+
     BrowserAnimationsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({

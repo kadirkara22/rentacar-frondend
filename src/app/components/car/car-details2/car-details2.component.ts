@@ -6,9 +6,12 @@ import { CarDetails } from 'src/app/Models/carDetails';
 import { CarImage } from 'src/app/Models/carImage';
 import { Color } from 'src/app/Models/color';
 import { Rental } from 'src/app/Models/rental';
+import { User } from 'src/app/Models/user';
 import { CarService } from 'src/app/services/car.service';
 import { CarImageService } from 'src/app/services/carImageService';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { RentalService } from 'src/app/services/rental.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-car-details2',
@@ -24,6 +27,7 @@ export class CarDetails2Component implements OnInit {
   rentStartDate: Date = this.DateTimeNow;
   rentEndDate: Date = this.DateTimeNow;
   cars: CarDetails[] = [];
+  users : User[]=[];
   images: CarImage[] = [];
   ImagePaths: string[] = [];
   imageUrl = 'https://localhost:44304/';
@@ -33,14 +37,16 @@ export class CarDetails2Component implements OnInit {
     private activatedRoute: ActivatedRoute,
     private ImageService: CarImageService,
     private toastrService: ToastrService,
-    private rentalService: RentalService
+    private rentalService: RentalService,
+    private userService:UserService,
+    private localStorage:LocalStorageService
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carId']) {
         this.getCarDetail(params['carId']);
-
+        this.getUsersById();
         this.getDiffBetweenDays();
       }
 
@@ -87,5 +93,15 @@ export class CarDetails2Component implements OnInit {
     var difference = date2.getTime() - date1.getTime();
     var gunFarki = Math.ceil(difference / (1000 * 3600 * 24));
   }
-
+  isRentable(){
+    if(this.cars[0].findeks<=this.users[0].findeks){
+      return true;
+    }
+    return false;
+  }
+  getUsersById(){
+    this.userService.getUsersById(Number(this.localStorage.getItem('id'))).subscribe(response=>{
+      this.users=response.data
+    })
+  }
 }
