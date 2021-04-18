@@ -19,6 +19,8 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginGuard } from './guards/login.guard';
+import { RegisterComponent } from './components/register/register.component';
+import { UserUpdateComponent } from './components/user-update/user-update.component';
 
 
 
@@ -43,6 +45,8 @@ const routes: Routes = [
   {path:"cars/caradd",component:CarAddComponent,canActivate:[LoginGuard]},
   {path:"cars/update/:carId",component:CarUpdateComponent,canActivate:[LoginGuard]},
   {path:"login",component:LoginComponent},
+  {path:"register",component:RegisterComponent},
+  {path:"updateuser",component:UserUpdateComponent},
 ];
 
 @NgModule({

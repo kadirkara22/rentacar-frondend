@@ -11,7 +11,7 @@
   routerLink = "/cars/brand/{{brand.brandId}}"
   *ngFor="let brand of brands | brandFilter : filterText1"
   [class]="getCurrentBrandClass(brand)" style="text-align:left;">
-  {{brand.brandName}}</button>
+  {{brand.brandName | uppercase}}</button>
 
 
   <button type="button" class="btn btn-success"routerLink = "/cars/brandadd"  ><strong>Marka Ekle</strong> </button>

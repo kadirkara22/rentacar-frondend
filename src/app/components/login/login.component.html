@@ -1,5 +1,5 @@
  <body class="text-center">
-    
+
 <main class="form-signin">
   <form [formGroup]="loginForm">
     <img class="mb-4 aw-zoom" src="https://picsum.photos/200/300" alt="" width="150" height="150">
@@ -12,17 +12,17 @@
     <div class="form-floating">
       <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Parola</label>
-    </div> 
+    </div>
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Beni Hatırla
       </label>
-    </div> 
-    <button class="w-100 btn btn-lg btn-primary"(click)="login()">Giriş yap</button>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary"(click)="login()" routerLink = "/cars">Giriş yap</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
   </form>
-</main> 
+</main>
 
 
-    
+
   </body>

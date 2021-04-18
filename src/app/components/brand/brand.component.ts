@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/Models/brand';
 import { BrandService } from 'src/app/services/brand.service';
 
+
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',

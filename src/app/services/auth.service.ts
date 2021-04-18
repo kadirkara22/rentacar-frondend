@@ -20,7 +20,7 @@ login(loginModel:LoginModel):Observable<SingleResponseModel<TokenModel>>{
   return this.httpClient.post<SingleResponseModel<TokenModel>>(this.apiUrl+"login",loginModel)
 }
 register(registerModel:RegisterModel):Observable<SingleResponseModel<TokenModel>>{
-  return this.httpClient.post<SingleResponseModel<TokenModel>>(this.apiUrl+"/register",registerModel)
+  return this.httpClient.post<SingleResponseModel<TokenModel>>(this.apiUrl+"register",registerModel)
 }
 isAuthenticated(){
   if(localStorage.getItem("token")){
